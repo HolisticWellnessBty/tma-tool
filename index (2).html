@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crystal G | TMA + Chakra Report</title>
+  <style>
+    body { font-family: Georgia, serif; background: #fefdf9; padding: 20px; }
+    .chakra { font-size: 1.1em; font-weight: bold; color: #4a7c59; margin-top: 20px; }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #4a7c59;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .icon { height: 24px; vertical-align: middle; margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">✨ Holistic TMA + Chakra Insight Report ✨</h2>
+
+  <label>Client Name: <input type="text" id="clientName" /></label><br><br>
+  <label>Calcium:
+    <select id="calcium">
+      <option value="">--</option>
+      <option>Low</option>
+      <option>Balanced</option>
+      <option>High</option>
+    </select>
+  </label>
+  <label>Zinc:
+    <select id="zinc">
+      <option value="">--</option>
+      <option>Low</option>
+      <option>Balanced</option>
+      <option>High</option>
+    </select>
+  </label>
+  <label>Copper:
+    <select id="copper">
+      <option value="">--</option>
+      <option>Low</option>
+      <option>Balanced</option>
+      <option>High</option>
+    </select>
+  </label>
+
+  <button onclick="generateReport()">✨ Generate Report</button>
+  <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+  <button onclick="emailReport()">📩 Email Report</button>
+
+  <div id="report" style="margin-top: 30px;"></div>
+
+  <script>
+    function generateReport() {
+      const name = document.getElementById("clientName").value;
+      const calcium = document.getElementById("calcium").value;
+      const zinc = document.getElementById("zinc").value;
+      const copper = document.getElementById("copper").value;
+
+      let chakra = '';
+      let emotional = '';
+      let physical = '';
+      let spiritual = '';
+      let supplements = [];
+
+      if (calcium === "High") {
+        chakra += "<div class='chakra'><img src='https://upload.wikimedia.org/wikipedia/commons/9/9e/Root_Chakra_Symbol.png' class='icon' />Root Chakra</div>";
+        emotional += "Resistance, control issues, fear of change.<br>";
+        physical += "May indicate slow metabolism and adrenal fatigue.<br>";
+        spiritual += "Grounding practices are needed. Connection to Earth energies.<br>";
+        supplements.push("Paramin", "Thym-Adren");
+      }
+
+      if (zinc === "Low" && copper === "High") {
+        chakra += "<div class='chakra'><img src='https://upload.wikimedia.org/wikipedia/commons/8/8c/Heart_Chakra_Symbol.png' class='icon' />Heart Chakra</div>";
+        emotional += "Emotional overwhelm or sensitivity.<br>";
+        physical += "Compromised immunity or inflammation patterns.<br>";
+        spiritual += "May benefit from forgiveness and compassion work.<br>";
+        supplements.push("Limcomin");
+      }
+
+      const report = `
+        <div style='background:#fff; padding: 20px; border-radius: 10px; border: 1px solid #ccc;'>
+          <h3>🌿 Client Report for ${name}</h3>
+          ${chakra || "<p>No major chakra flags.</p>"}
+          <p><strong>🧠 Emotional:</strong> ${emotional}</p>
+          <p><strong>💪 Physical:</strong> ${physical}</p>
+          <p><strong>✨ Spiritual:</strong> ${spiritual}</p>
+          <p><strong>🧴 Recommended Supplements:</strong> ${supplements.join(", ")}</p>
+        </div>
+      `;
+
+      document.getElementById("report").innerHTML = report;
+    }
+
+    function emailReport() {
+      alert("📩 Email function coming soon — this will allow sending report to yourself or your client.");
+    }
+  </script>
+</body>
+</html>
