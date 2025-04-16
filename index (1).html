@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crystal G | TMA + Human Design Tool (Dropdown Version)</title>
+  <style>
+    body { font-family: Georgia, serif; background: #fefdf9; padding: 20px; }
+    label { display: block; margin-top: 10px; }
+    select { margin-left: 10px; }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #607b63;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">🌿 Holistic TMA Report Builder</h2>
+
+  <h3>Client Info</h3>
+  <label>Name: <input type="text" id="clientName" /></label>
+
+  <h3>Nutrient Minerals</h3>
+  <label>Calcium: <select id="calcium"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+  <label>Magnesium: <select id="magnesium"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+  <label>Sodium: <select id="sodium"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+  <label>Potassium: <select id="potassium"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+  <label>Zinc: <select id="zinc"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+  <label>Copper: <select id="copper"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+  <label>Phosphorus: <select id="phosphorus"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+
+  <h3>Toxic Metals</h3>
+  <label>Lead: <select id="lead"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+  <label>Mercury: <select id="mercury"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+  <label>Aluminum: <select id="aluminum"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+
+  <h3>Additional Minerals</h3>
+  <label>Nickel: <select id="nickel"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+  <label>Lithium: <select id="lithium"><option value="">--</option><option>Low</option><option>Balanced</option><option>High</option></select></label>
+
+  <button onclick="generateMineralInsight()">✨ Generate Mineral Insight</button>
+
+  <div id="report" style="margin-top: 30px;"></div>
+
+  <script>
+    function generateMineralInsight() {
+      const name = document.getElementById("clientName").value;
+      const calcium = document.getElementById("calcium").value;
+      const zinc = document.getElementById("zinc").value;
+      const copper = document.getElementById("copper").value;
+
+      let chakra = "";
+      let message = "";
+
+      if (calcium === "High") {
+        chakra += "🔴 Root Chakra imbalance (sluggish energy, control, fear)<br>";
+        message += "High calcium suggests a slowed metabolism. Consider grounding and adrenal support.<br>";
+      }
+
+      if (zinc === "Low" && copper === "High") {
+        chakra += "💚 Heart Chakra imbalance (emotional overload, codependency)<br>";
+        message += "Zinc/copper imbalance may indicate emotional sensitivity or trauma patterns.<br>";
+      }
+
+      const report = `
+        <h3>🌿 Report for ${name}</h3>
+        <p><strong>Chakra Insights:</strong><br>${chakra || "No major chakra alerts detected."}</p>
+        <p><strong>Interpretation:</strong><br>${message || "Patterns appear stable. Continue to monitor and support balance."}</p>
+        <p><strong>Suggested Supplements:</strong><br>${(calcium === "High") ? "Paramin, Thym-Adren" : ""} ${(zinc === "Low") ? "Limcomin" : ""}</p>
+      `;
+
+      document.getElementById("report").innerHTML = report;
+    }
+  </script>
+</body>
+</html>
