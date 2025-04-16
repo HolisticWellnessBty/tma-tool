@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crystal G | TMA + Human Design Report</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #fefdf9;
+      padding: 20px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #607b63;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">✨ Holistic Client Insight Report ✨</h2>
+
+  <h3>Client Information</h3>
+  <label>Name: <input type="text" id="clientName" style="width: 60%;" /></label><br><br>
+  <label>Date of Birth: <input type="date" id="birthDate" /></label>
+  <label>Time of Birth: <input type="time" id="birthTime" /></label>
+  <label>Location (City, State, Country): <input type="text" id="birthLocation" style="width: 80%;" /></label>
+  <button onclick="fetchHumanDesign()">🔮 Get Human Design</button>
+
+  <div id="hdResults" style="margin-top: 15px;"></div>
+  <button onclick="generateFullReport()">✨ Generate Client Report</button>
+  <div id="finalReport" style="margin-top: 30px;"></div>
+
+  <script>
+    function fetchHumanDesign() {
+      const date = document.getElementById("birthDate").value;
+      const time = document.getElementById("birthTime").value;
+      const location = document.getElementById("birthLocation").value;
+      const results = document.getElementById("hdResults");
+
+      if (!date || !time || !location) {
+        results.innerHTML = "<p style='color:red;'>Please fill out all birth details.</p>";
+        return;
+      }
+
+      results.innerHTML = `
+        <p><strong>🔍 Human Design Results:</strong></p>
+        <p><strong>Type:</strong> Manifesting Generator</p>
+        <p><strong>Authority:</strong> Sacral</p>
+        <p><strong>Profile:</strong> 3/5 Martyr-Heretic</p>
+        <p><strong>Strategy:</strong> Wait to Respond</p>
+        <p style='font-size: 0.9em; color: #888;'>*This is a placeholder preview. Final API integration coming soon.*</p>
+      `;
+
+      results.dataset.type = "Manifesting Generator";
+      results.dataset.authority = "Sacral";
+      results.dataset.profile = "3/5 Martyr-Heretic";
+      results.dataset.strategy = "Wait to Respond";
+    }
+
+    function generateFullReport() {
+      const name = document.getElementById("clientName").value;
+      const hdData = document.getElementById("hdResults").dataset;
+
+      const hdType = hdData.type || "Not calculated";
+      const hdAuthority = hdData.authority || "";
+      const hdProfile = hdData.profile || "";
+      const hdStrategy = hdData.strategy || "";
+
+      const typeDescriptions = {
+        "Projector": "You are a natural guide and seer.",
+        "Generator": "You are a builder with life-force energy.",
+        "Manifestor": "You initiate change and create momentum.",
+        "Manifesting Generator": "You are fast, adaptable, and multi-talented.",
+        "Reflector": "You reflect the energy of your environment."
+      };
+
+      const chakraInsights = {
+        "Emotional": "Solar Plexus Chakra",
+        "Sacral": "Sacral Chakra",
+        "Splenic": "Root Chakra",
+        "Ego": "Heart Chakra",
+        "Self-Projected": "Throat Chakra",
+        "Environmental": "Ajna/Crown Chakra",
+        "Lunar": "All Chakras"
+      };
+
+      const strategyTips = {
+        "Wait for the Invitation": "Wait to be recognized before engaging deeply.",
+        "Wait to Respond": "Tune into what excites your body.",
+        "Inform Before Acting": "Inform to create peace.",
+        "Respond & Inform": "Follow energy, then inform others.",
+        "Wait a Lunar Cycle": "Take your time to observe and feel through."
+      };
+
+      const reportHTML = `
+        <div style='background:#fff; padding: 20px; border-radius: 10px; border: 1px solid #ccc;'>
+          <h3>🌿 Client Report for ${name}</h3>
+          <p><strong>Type:</strong> ${hdType} — ${typeDescriptions[hdType] || ""}</p>
+          <p><strong>Authority:</strong> ${hdAuthority} — ${chakraInsights[hdAuthority] || ""}</p>
+          <p><strong>Profile:</strong> ${hdProfile}</p>
+          <p><strong>Strategy:</strong> ${hdStrategy} — ${strategyTips[hdStrategy] || ""}</p>
+          <hr>
+          <p><strong>🌀 Chakra Focus:</strong> ${chakraInsights[hdAuthority] || ""}</p>
+          <p><strong>✨ Affirmation:</strong><br><em>I trust my design and honor my energy flow.</em></p>
+        </div>
+      `;
+
+      document.getElementById("finalReport").innerHTML = reportHTML;
+    }
+  </script>
+</body>
+</html>
