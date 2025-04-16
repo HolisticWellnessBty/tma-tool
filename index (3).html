@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crystal G | Full TMA + Supplement System</title>
+  <style>
+    body { font-family: Georgia, serif; background: #fefdf9; padding: 20px; }
+    h2, h3 { color: #4a7c59; }
+    .supplement-list { columns: 2; margin-bottom: 20px; }
+    .supplement-list label { display: block; margin-bottom: 5px; }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #4a7c59;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>🌿 Crystal G's Full TMA + Supplement Insight Tool</h2>
+
+  <label>Client Name: <input type="text" id="clientName" /></label>
+  <h3>Choose Recommended Supplements</h3>
+  <div class="supplement-list">
+    <label><input type="checkbox" value="Metabolic Paks"> Metabolic Paks</label>
+    <label><input type="checkbox" value="Megapan"> Megapan</label>
+    <label><input type="checkbox" value="SBF Formula"> SBF Formula</label>
+    <label><input type="checkbox" value="Stress Pak"> Stress Pak</label>
+    <label><input type="checkbox" value="Chelated Glandular"> Chelated Glandular</label>
+    <label><input type="checkbox" value="Endo-Dren"> Endo-Dren</label>
+    <label><input type="checkbox" value="Renamide"> Renamide</label>
+    <label><input type="checkbox" value="Thym-Adren"> Thym-Adren</label>
+    <label><input type="checkbox" value="Thyro Complex"> Thyro Complex</label>
+    <label><input type="checkbox" value="Chromium Nicotinate Plus"> Chromium Nicotinate Plus</label>
+    <label><input type="checkbox" value="Chromium Picolinate"> Chromium Picolinate</label>
+    <label><input type="checkbox" value="Limcomin"> Limcomin</label>
+    <label><input type="checkbox" value="Lithinase"> Lithinase</label>
+    <label><input type="checkbox" value="Magnesium"> Magnesium</label>
+    <label><input type="checkbox" value="Paramin"> Paramin</label>
+    <label><input type="checkbox" value="Selenium"> Selenium</label>
+    <label><input type="checkbox" value="Zinc"> Zinc</label>
+    <label><input type="checkbox" value="Zinc Picolinate"> Zinc Picolinate</label>
+    <label><input type="checkbox" value="Calcium Lactate"> Calcium Lactate</label>
+    <label><input type="checkbox" value="M.C.H.C."> M.C.H.C.</label>
+    <label><input type="checkbox" value="B-6"> B-6</label>
+    <label><input type="checkbox" value="B-12"> B-12</label>
+    <label><input type="checkbox" value="Endo-Pan"> Endo-Pan</label>
+    <label><input type="checkbox" value="Endo A-C"> Endo A-C</label>
+    <label><input type="checkbox" value="Vitamin D"> Vitamin D</label>
+    <label><input type="checkbox" value="Enzaid"> Enzaid</label>
+    <label><input type="checkbox" value="GB-3"> GB-3</label>
+    <label><input type="checkbox" value="Bilberry"> Bilberry</label>
+    <label><input type="checkbox" value="Cat's Claw"> Cat's Claw</label>
+    <label><input type="checkbox" value="Garlic"> Garlic</label>
+    <label><input type="checkbox" value="Ginkgo Extract"> Ginkgo Extract</label>
+    <label><input type="checkbox" value="Melatonin"> Melatonin</label>
+    <label><input type="checkbox" value="5-hydroxy L-Tryptophan"> 5-hydroxy L-Tryptophan</label>
+    <label><input type="checkbox" value="Acidophilus"> Acidophilus</label>
+    <label><input type="checkbox" value="ATP Energy Boost"> ATP Energy Boost</label>
+    <label><input type="checkbox" value="Caprylic Formula"> Caprylic Formula</label>
+    <label><input type="checkbox" value="CO Q 10 100mg PLUS E"> CO Q 10 100mg PLUS E</label>
+    <label><input type="checkbox" value="Colloidal Silver"> Colloidal Silver</label>
+    <label><input type="checkbox" value="Elo-Plex"> Elo-Plex</label>
+    <label><input type="checkbox" value="Endo-Veggies"> Endo-Veggies</label>
+    <label><input type="checkbox" value="EPA-DHA"> EPA-DHA</label>
+    <label><input type="checkbox" value="Flax Oil Capsules"> Flax Oil Capsules</label>
+    <label><input type="checkbox" value="Pro-Antho Formula"> Pro-Antho Formula</label>
+    <label><input type="checkbox" value="Kelp"> Kelp</label>
+    <label><input type="checkbox" value="Niacinamide 500"> Niacinamide 500</label>
+    <label><input type="checkbox" value="Taurine"> Taurine</label>
+  </div>
+
+  <button onclick="generateSupplementSummary()">✨ Generate Summary</button>
+  <div id="summary" style="margin-top: 30px;"></div>
+
+  <script>
+    function generateSupplementSummary() {
+      const name = document.getElementById("clientName").value;
+      const selected = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
+        .map(cb => cb.value);
+      const summary = `
+        <h3>🌿 Supplement Summary for ${name}</h3>
+        <p><strong>Selected Supplements:</strong><br>${selected.join(", ")}</p>
+      `;
+      document.getElementById("summary").innerHTML = summary;
+    }
+  </script>
+</body>
+</html>
